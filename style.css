@@ -1,0 +1,89 @@
+.allItems {
+  font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+#intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#rows{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.light {
+  width: 80px; /* Adjust this value to change the width of the square */
+  height: 80px; /* Adjust this value to change the height of the square */
+  background-color: rgb(239, 208, 192); /* Just for demonstration, you can change the color */
+  border: 1px solid black; /* Border properties: thickness style color */
+}
+
+.dark {
+  width: 80px; /* Adjust this value to change the width of the square */
+  height: 80px; /* Adjust this value to change the height of the square */
+  background-color: rgb(57, 23, 23); /* Just for demonstration, you can change the color */
+  border: 1px solid black; /* Border properties: thickness style color */
+}
+
+.space-behind-checkers {
+  width: 100px; /* Adjust the size of the square */
+  height: 100px; /* Adjust the size of the square */
+  background-color: blue; /* Just for demonstration, you can change the color */
+  position: relative;
+  border: 1px solid black;
+}
+
+.player-1 {
+  width: 80%; /* Adjust the size of the circle relative to the square */
+  height: 80%; /* Adjust the size of the circle relative to the square */
+  background-color: rgb(241, 192, 132); /* Just for demonstration, you can change the color */
+  border-radius: 50%; /* Make it a circle */
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-self: center;
+}
+
+.player-2 {
+  width: 80%; /* Adjust the size of the circle relative to the square */
+  height: 80%; /* Adjust the size of the circle relative to the square */
+  background-color: rgb(8, 5, 5); /* Just for demonstration, you can change the color */
+  border-radius: 50%; /* Make it a circle */
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-self: center;
+}
+
+
+#Buttons-info{
+  border: 1px solid black;
+  padding: 10px;
+}
+
+/* #container {
+  border: solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+table {
+  border-collapse: collapse;
+}
+
+
+table td {
+  width: 50px; /* Adjust the width of the cells */
+  height: 50px; /* Adjust the height of the cells */
+  border: 1px solid black; /* Add border for styling */
+  padding: 0; /* Remove padding */
+}
