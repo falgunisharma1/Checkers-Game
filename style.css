@@ -2,6 +2,7 @@
   font-family: "Work Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  background-color: green;
 }
 
 #intro {
@@ -9,6 +10,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  color: white;
 }
 
 #rows{
@@ -34,7 +36,7 @@
 .space-behind-checkers {
   width: 100px; /* Adjust the size of the square */
   height: 100px; /* Adjust the size of the square */
-  background-color: blue; /* Just for demonstration, you can change the color */
+  background-color:  rgb(57, 23, 23); /* Just for demonstration, you can change the color */
   position: relative;
   border: 1px solid black;
 }
@@ -69,15 +71,16 @@
   padding: 10px;
 }
 
-/* #container {
+#container {
   border: solid black;
   display: flex;
   justify-content: center;
   align-items: center;
-} */
+}
 
 table {
   border-collapse: collapse;
+  
 }
 
 
