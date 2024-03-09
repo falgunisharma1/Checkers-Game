@@ -116,7 +116,7 @@ function handleCellClick(event, destRow, destCell) {
       document.getElementById(
         "currentPlayer"
       ).textContent = `Current Player: ${currentPlayer}`;
-    } else {
+    } else if (currentPlayer === 2) {
       if (gameBoard[checkerRow][checkerCell] === 20) {
         gameBoard[destRow][destCell] = 20;
         gameBoard[checkerRow][checkerCell] = 0;
