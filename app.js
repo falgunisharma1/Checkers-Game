@@ -137,6 +137,8 @@ function handleCellClick(event, destRow, destCell) {
       gameBoard[destRow][destCell] = 10;
     }
 
+    
+
     resetGame();
   }
 }
@@ -267,6 +269,8 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
         gameBoard[checkerRow + 1][checkerCell + 1] = 0;
         player1Score = player1Score + 1;
         document.getElementById("player-1-score").textContent = player1Score;
+        const moveSound = document.getElementById("move-sound");
+    moveSound.play();
 
         return true;
       }
@@ -280,6 +284,8 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
         gameBoard[checkerRow + 1][checkerCell - 1] = 0;
         player1Score = player1Score + 1;
         document.getElementById("player-1-score").textContent = player1Score;
+        const moveSound = document.getElementById("move-sound");
+    moveSound.play();
         return true;
       }
     }
@@ -296,6 +302,8 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
         player2Score = player2Score + 1;
         document.getElementById("player-2-score").textContent = player2Score;
         console.log(player2Score);
+        const moveSound = document.getElementById("move-sound");
+    moveSound.play();
         return true;
       }
     }
@@ -309,6 +317,8 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
         gameBoard[checkerRow - 1][checkerCell - 1] = 0;
         player2Score = player2Score + 1;
         document.getElementById("player-2-score").textContent = player2Score;
+        const moveSound = document.getElementById("move-sound");
+    moveSound.play();
         console.log(player2Score);
         return true;
       }
@@ -325,6 +335,8 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
         gameBoard[checkerRow + 1][checkerCell + 1] = 0;
         player1Score = player1Score + 1;
         document.getElementById("player-1-score").textContent = player1Score;
+        const moveSound = document.getElementById("move-sound");
+    moveSound.play();
 
         return true;
       }
@@ -338,6 +350,8 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
         gameBoard[checkerRow + 1][checkerCell - 1] = 0;
         player1Score = player1Score + 1;
         document.getElementById("player-1-score").textContent = player1Score;
+        const moveSound = document.getElementById("move-sound");
+    moveSound.play();
         return true;
       }
     }
@@ -350,6 +364,8 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
         gameBoard[checkerRow - 1][checkerCell + 1] = 0;
         player1Score = player1Score + 1;
         document.getElementById("player-1-score").textContent = player1Score;
+        const moveSound = document.getElementById("move-sound");
+    moveSound.play();
         return true;
       }
     }
@@ -362,6 +378,8 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
         gameBoard[checkerRow - 1][checkerCell - 1] = 0;
         player1Score = player1Score + 1;
         document.getElementById("player-1-score").textContent = player1Score;
+        const moveSound = document.getElementById("move-sound");
+    moveSound.play();
         return true;
       }
     }
@@ -377,6 +395,8 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
         gameBoard[checkerRow - 1][checkerCell + 1] = 0;
         player2Score = player2Score + 1;
         document.getElementById("player-2-score").textContent = player2Score;
+        const moveSound = document.getElementById("move-sound");
+    moveSound.play();
         console.log(player2Score);
         return true;
       }
@@ -391,6 +411,8 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
         gameBoard[checkerRow - 1][checkerCell - 1] = 0;
         player2Score = player2Score + 1;
         document.getElementById("player-2-score").textContent = player2Score;
+        const moveSound = document.getElementById("move-sound");
+    moveSound.play();
         console.log(player2Score);
         return true;
       }
@@ -404,6 +426,8 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
         gameBoard[checkerRow + 1][checkerCell + 1] = 0;
         player2Score = player2Score + 1;
         document.getElementById("player-2-score").textContent = player2Score;
+        const moveSound = document.getElementById("move-sound");
+    moveSound.play();
 
         return true;
       }
@@ -417,6 +441,8 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
         gameBoard[checkerRow + 1][checkerCell - 1] = 0;
         player2Score = player2Score + 1;
         document.getElementById("player-2-score").textContent = player2Score;
+        const moveSound = document.getElementById("move-sound");
+    moveSound.play();
         return true;
       }
     }
@@ -442,4 +468,3 @@ function checkCurrentPlayer(checkerRow, checkerCell, element) {
     }
   }
 }
-
