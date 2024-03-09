@@ -211,6 +211,9 @@ table td {
   left: 50%;
   transform: translate(-50%, -50%);
   align-self: center;
+  align-self: center;
+  font-size: x-large;
+  text-align: center;
 }
 
 .king-player-2 {
@@ -223,10 +226,7 @@ table td {
   left: 50%;
   transform: translate(-50%, -50%);
   align-self: center;
-}
-
-#kingEmoji {
-  align-items: center;
   font-size: x-large;
   text-align: center;
 }
+

@@ -19,7 +19,6 @@ let selectedCellPosition;
 let player1Score = 0;
 let player2Score = 0;
 
-
 //Next button on second view
 function buttonClickNext() {
   document.getElementById("info").style.display = "none";
@@ -38,13 +37,11 @@ function deleteGame() {
   table.remove();
 }
 
-
 //Resetting the board with every move
 function resetGame() {
   deleteGame();
   createGame();
 }
-
 
 //Creating the table
 function createGame() {
@@ -81,7 +78,6 @@ createGame();
 
 //handle cell click
 function handleCellClick(event, destRow, destCell) {
-  
   if (selectedCell) {
     if (document.getElementById(selectedCell.id).className === "dark") {
       document.getElementById(selectedCell.id).style.background =
@@ -115,6 +111,7 @@ function handleCellClick(event, destRow, destCell) {
       ).textContent = `Current Player: ${currentPlayer}`;
     } else if (currentPlayer === 2) {
       if (gameBoard[checkerRow][checkerCell] === 20) {
+        console.log("test");
         gameBoard[destRow][destCell] = 20;
         gameBoard[checkerRow][checkerCell] = 0;
       }
@@ -134,12 +131,10 @@ function handleCellClick(event, destRow, destCell) {
       gameBoard[destRow][destCell] = 10;
     }
 
-    
-
+    console.log(gameBoard)
     resetGame();
   }
 }
-
 
 //When a checker is selected
 function handleCheckerClick(event, row, cell) {
@@ -150,13 +145,11 @@ function handleCheckerClick(event, row, cell) {
   event.stopPropagation();
 }
 
-
 //To create the checker - called back in createTable()
 function createChecker(row, cell, td) {
   if (gameBoard[row][cell] === 1) {
     let checker = document.createElement("div");
     td.appendChild(checker);
-
     checker.className = "player-1";
     checker.id = "player1 " + player1CheckerCount;
     player1CheckerCount++;
@@ -166,7 +159,6 @@ function createChecker(row, cell, td) {
   } else if (gameBoard[row][cell] === 2) {
     let checker = document.createElement("div");
     td.appendChild(checker);
-
     checker.className = "player-2";
     checker.id = "player2 " + player2CheckerCount;
     player2CheckerCount++;
@@ -174,7 +166,6 @@ function createChecker(row, cell, td) {
   } else if (gameBoard[row][cell] === 10) {
     let checker = document.createElement("div");
     let kingEmoji = document.createElement("p");
-    kingEmoji.id = "kingEmoji";
     kingEmoji.textContent = "👑";
     checker.appendChild(kingEmoji);
     td.appendChild(checker);
@@ -185,7 +176,6 @@ function createChecker(row, cell, td) {
   } else if (gameBoard[row][cell] === 20) {
     let checker = document.createElement("div");
     let kingEmoji = document.createElement("p");
-    kingEmoji.id = "kingEmoji";
     kingEmoji.textContent = "👑";
     checker.appendChild(kingEmoji);
     td.appendChild(checker);
@@ -232,7 +222,6 @@ function canCheckerMove(checkPos, destCellPos) {
   return canMove;
 }
 
-
 //Which player can move based on matrix values and current player value variable
 function isPlayerTurnAllowed(checkerRow, checkerCell, destRow, destCell) {
   let canMove = false;
@@ -262,22 +251,21 @@ function isPlayerTurnAllowed(checkerRow, checkerCell, destRow, destCell) {
   return canMove;
 }
 
-
-//To check if there is an opponent to capture 
+//To check if there is an opponent to capture
 function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
-  console.log(destRow, destCell, checkerRow, checkerCell);
   //if player -1 but not a king checker
   if (currentPlayer === 1 && gameBoard[checkerRow][checkerCell] !== 10) {
     if (destRow === checkerRow + 2) {
       if (
         destCell === checkerCell + 2 &&
-        gameBoard[checkerRow + 1][checkerCell + 1] === 2
+        (gameBoard[checkerRow + 1][checkerCell + 1] === 2 ||
+          gameBoard[checkerRow + 1][checkerCell + 1] === 20)
       ) {
         gameBoard[checkerRow + 1][checkerCell + 1] = 0;
         player1Score = player1Score + 1;
         document.getElementById("player-1-score").textContent = player1Score;
         const moveSound = document.getElementById("move-sound");
-    moveSound.play();
+        moveSound.play();
 
         return true;
       }
@@ -286,13 +274,14 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
     if (destRow === checkerRow + 2) {
       if (
         destCell === checkerCell - 2 &&
-        gameBoard[checkerRow + 1][checkerCell - 1] === 2
+        (gameBoard[checkerRow + 1][checkerCell - 1] === 2 ||
+          gameBoard[checkerRow + 1][checkerCell - 1] === 20)
       ) {
         gameBoard[checkerRow + 1][checkerCell - 1] = 0;
         player1Score = player1Score + 1;
         document.getElementById("player-1-score").textContent = player1Score;
         const moveSound = document.getElementById("move-sound");
-    moveSound.play();
+        moveSound.play();
         return true;
       }
     }
@@ -303,14 +292,15 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
     if (destRow === checkerRow - 2) {
       if (
         destCell === checkerCell + 2 &&
-        gameBoard[checkerRow - 1][checkerCell + 1] === 1
+        (gameBoard[checkerRow - 1][checkerCell + 1] === 1 ||
+          gameBoard[checkerRow - 1][checkerCell + 1] === 10)
       ) {
         gameBoard[checkerRow - 1][checkerCell + 1] = 0;
         player2Score = player2Score + 1;
         document.getElementById("player-2-score").textContent = player2Score;
         console.log(player2Score);
         const moveSound = document.getElementById("move-sound");
-    moveSound.play();
+        moveSound.play();
         return true;
       }
     }
@@ -319,13 +309,14 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
       console.log("hi");
       if (
         destCell === checkerCell - 2 &&
-        gameBoard[checkerRow - 1][checkerCell - 1] === 1
+        (gameBoard[checkerRow - 1][checkerCell - 1] === 1 ||
+          gameBoard[checkerRow - 1][checkerCell - 1] === 10)
       ) {
         gameBoard[checkerRow - 1][checkerCell - 1] = 0;
         player2Score = player2Score + 1;
         document.getElementById("player-2-score").textContent = player2Score;
         const moveSound = document.getElementById("move-sound");
-    moveSound.play();
+        moveSound.play();
         console.log(player2Score);
         return true;
       }
@@ -337,13 +328,14 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
     if (destRow === checkerRow + 2) {
       if (
         destCell === checkerCell + 2 &&
-        gameBoard[checkerRow + 1][checkerCell + 1] === 2
+        (gameBoard[checkerRow + 1][checkerCell + 1] === 2 ||
+          gameBoard[checkerRow + 1][checkerCell + 1] === 20)
       ) {
         gameBoard[checkerRow + 1][checkerCell + 1] = 0;
         player1Score = player1Score + 1;
         document.getElementById("player-1-score").textContent = player1Score;
         const moveSound = document.getElementById("move-sound");
-    moveSound.play();
+        moveSound.play();
 
         return true;
       }
@@ -352,13 +344,14 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
     if (destRow === checkerRow + 2) {
       if (
         destCell === checkerCell - 2 &&
-        gameBoard[checkerRow + 1][checkerCell - 1] === 2
+        (gameBoard[checkerRow + 1][checkerCell - 1] === 2 ||
+          gameBoard[checkerRow + 1][checkerCell - 1] === 20)
       ) {
         gameBoard[checkerRow + 1][checkerCell - 1] = 0;
         player1Score = player1Score + 1;
         document.getElementById("player-1-score").textContent = player1Score;
         const moveSound = document.getElementById("move-sound");
-    moveSound.play();
+        moveSound.play();
         return true;
       }
     }
@@ -366,13 +359,14 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
     if (destRow === checkerRow - 2) {
       if (
         destCell === checkerCell + 2 &&
-        gameBoard[checkerRow - 1][checkerCell + 1] === 2
+        (gameBoard[checkerRow - 1][checkerCell + 1] === 2 ||
+          gameBoard[checkerRow - 1][checkerCell + 1] === 20)
       ) {
         gameBoard[checkerRow - 1][checkerCell + 1] = 0;
         player1Score = player1Score + 1;
         document.getElementById("player-1-score").textContent = player1Score;
         const moveSound = document.getElementById("move-sound");
-    moveSound.play();
+        moveSound.play();
         return true;
       }
     }
@@ -380,13 +374,14 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
     if (destRow === checkerRow - 2) {
       if (
         destCell === checkerCell - 2 &&
-        gameBoard[checkerRow - 1][checkerCell - 1] === 2
+        (gameBoard[checkerRow - 1][checkerCell - 1] === 2 ||
+          gameBoard[checkerRow - 1][checkerCell - 1] === 20)
       ) {
         gameBoard[checkerRow - 1][checkerCell - 1] = 0;
         player1Score = player1Score + 1;
         document.getElementById("player-1-score").textContent = player1Score;
         const moveSound = document.getElementById("move-sound");
-    moveSound.play();
+        moveSound.play();
         return true;
       }
     }
@@ -397,14 +392,15 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
     if (destRow === checkerRow - 2) {
       if (
         destCell === checkerCell + 2 &&
-        gameBoard[checkerRow - 1][checkerCell + 1] === 1
+        (gameBoard[checkerRow - 1][checkerCell + 1] === 1 ||
+          gameBoard[checkerRow - 1][checkerCell + 1] === 10)
       ) {
         gameBoard[checkerRow - 1][checkerCell + 1] = 0;
         player2Score = player2Score + 1;
         document.getElementById("player-2-score").textContent = player2Score;
         const moveSound = document.getElementById("move-sound");
-    moveSound.play();
-        console.log(player2Score);
+        moveSound.play();
+        console.log("working");
         return true;
       }
     }
@@ -413,13 +409,14 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
       console.log("hi");
       if (
         destCell === checkerCell - 2 &&
-        gameBoard[checkerRow - 1][checkerCell - 1] === 1
+        (gameBoard[checkerRow - 1][checkerCell - 1] === 1 ||
+          gameBoard[checkerRow - 1][checkerCell - 1] === 10)
       ) {
         gameBoard[checkerRow - 1][checkerCell - 1] = 0;
         player2Score = player2Score + 1;
         document.getElementById("player-2-score").textContent = player2Score;
         const moveSound = document.getElementById("move-sound");
-    moveSound.play();
+        moveSound.play();
         console.log(player2Score);
         return true;
       }
@@ -428,13 +425,14 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
     if (destRow === checkerRow + 2) {
       if (
         destCell === checkerCell + 2 &&
-        gameBoard[checkerRow + 1][checkerCell + 1] === 1
+        (gameBoard[checkerRow + 1][checkerCell + 1] === 1 ||
+          gameBoard[checkerRow + 1][checkerCell + 1] === 10)
       ) {
         gameBoard[checkerRow + 1][checkerCell + 1] = 0;
         player2Score = player2Score + 1;
         document.getElementById("player-2-score").textContent = player2Score;
         const moveSound = document.getElementById("move-sound");
-    moveSound.play();
+        moveSound.play();
 
         return true;
       }
@@ -443,13 +441,14 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
     if (destRow === checkerRow + 2) {
       if (
         destCell === checkerCell - 2 &&
-        gameBoard[checkerRow + 1][checkerCell - 1] === 1
+        (gameBoard[checkerRow + 1][checkerCell - 1] === 1 ||
+          gameBoard[checkerRow + 1][checkerCell - 1] === 10)
       ) {
         gameBoard[checkerRow + 1][checkerCell - 1] = 0;
         player2Score = player2Score + 1;
         document.getElementById("player-2-score").textContent = player2Score;
         const moveSound = document.getElementById("move-sound");
-    moveSound.play();
+        moveSound.play();
         return true;
       }
     }
@@ -460,7 +459,6 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
 function restartGame() {
   window.location.reload();
 }
-
 
 //Checking turns handeling Kings checkers as well
 function checkCurrentPlayer(checkerRow, checkerCell, element) {
@@ -487,4 +485,4 @@ document
   .getElementById("start-game")
   .addEventListener("click", clickStartButton);
 
-  document.getElementById("reset").addEventListener("click", restartGame);
+document.getElementById("reset").addEventListener("click", restartGame);
