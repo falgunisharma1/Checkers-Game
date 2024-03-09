@@ -112,7 +112,7 @@ font-size: larger;
 
 
 #Buttons-info {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -144,7 +144,7 @@ font-size: larger;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0px 0px 0px 100px;
+  padding: 0px 0px 0px 40px;
 
   
 }
@@ -153,6 +153,13 @@ font-size: larger;
   display: flex;
   justify-content: center;
   align-self: center;
+  background-color: rgb(241, 192, 132); /* Button background color */
+  color: rgb(57, 23, 23); /* Button text color */
+  border: none;
+  padding: 10px 10px;
+  font-size: 18px;
+  margin: 40px; /* Add some spacing between buttons */
+  cursor: pointer;
 }
 
 #container {
@@ -164,20 +171,22 @@ font-size: larger;
 
 .side-section {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   padding: 20px;
   flex-direction: column;
-  color:aliceblue
+  color:aliceblue;
+  margin: 0px -100px 100px 0px;
 
 }
 
 .score {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding: 150px;
   flex-direction: column;
   text-decoration: solid;
-  color:aliceblue
+  color:aliceblue;
+  margin: 50px 0px 30px 0px;
 
 }
 

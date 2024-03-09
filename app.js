@@ -19,21 +19,25 @@ let selectedCellPosition;
 let player1Score = 0;
 let player2Score = 0;
 
-function buttonClickNext (){
-  document.getElementById('info').style.display='none';
-  document.getElementById('Buttons-info').style.display='block';
-  
+document.getElementById(
+  "currentPlayer"
+).textContent = `Current Player: ${currentPlayer}`;
+
+function buttonClickNext() {
+  document.getElementById("info").style.display = "none";
+  document.getElementById("Buttons-info").style.display = "flex";
 }
 
-
-function clickStartButton (){
-  document.getElementById('gameBoard').style.visibility='visible';
-  document.getElementById('Buttons-info').style.display='none'
+function clickStartButton() {
+  document.getElementById("gameBoard").style.visibility = "visible";
+  document.getElementById("Buttons-info").style.display = "none";
 }
 
-document.getElementById('next').addEventListener('click', buttonClickNext);
+document.getElementById("next").addEventListener("click", buttonClickNext);
 
-document.getElementById('start-game').addEventListener('click', clickStartButton);
+document
+  .getElementById("start-game")
+  .addEventListener("click", clickStartButton);
 
 function deleteGame() {
   let table = document.getElementById("table");
@@ -104,10 +108,16 @@ function handleCellClick(event, destRow, destCell) {
       gameBoard[destRow][destCell] = 1;
       gameBoard[checkerRow][checkerCell] = 0;
       currentPlayer = 2;
+      document.getElementById(
+        "currentPlayer"
+      ).textContent = `Current Player: ${currentPlayer}`;
     } else {
       gameBoard[destRow][destCell] = 2;
       gameBoard[checkerRow][checkerCell] = 0;
       currentPlayer = 1;
+      document.getElementById(
+        "currentPlayer"
+      ).textContent = `Current Player: ${currentPlayer}`;
     }
     resetGame();
   }
@@ -176,8 +186,8 @@ function canCheckerMove(checkPos, destCellPos) {
   if (gameBoard[destRow][destCell] === 0) {
     if (gameBoard[checkerRow][checkerCell] === currentPlayer) {
       canMove = isPlayerTurnAllowed(checkerRow, checkerCell, destRow, destCell);
-      if(!canMove){
-        canMove = checkOpponent(destRow, destCell,checkerRow, checkerCell)
+      if (!canMove) {
+        canMove = checkOpponent(destRow, destCell, checkerRow, checkerCell);
       }
     }
   }
@@ -194,7 +204,7 @@ function isPlayerTurnAllowed(checkerRow, checkerCell, destRow, destCell) {
       (destCell === checkerCell + 1 || destCell === checkerCell - 1)
     ) {
       canMove = true;
-    } 
+    }
   } else if (currentPlayer === 2) {
     if (
       destRow === checkerRow - 1 &&
@@ -208,56 +218,66 @@ function isPlayerTurnAllowed(checkerRow, checkerCell, destRow, destCell) {
 }
 
 function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
-  console.log(destRow, destCell, checkerRow, checkerCell)
-  if(currentPlayer === 1){
-  if(destRow === checkerRow + 2){
-    if((destCell === checkerCell + 2) && (gameBoard[checkerRow+1][checkerCell+1] === 2)){
-      gameBoard[checkerRow+1][checkerCell+1] = 0;
-      player1Score = player1Score + 1
-      document.getElementById('player-1-score').textContent = player1Score;
-      console.log(player1Score)
-      return true;
-     
-    }
-  }
+  console.log(destRow, destCell, checkerRow, checkerCell);
+  if (currentPlayer === 1) {
+    if (destRow === checkerRow + 2) {
+      if (
+        destCell === checkerCell + 2 &&
+        gameBoard[checkerRow + 1][checkerCell + 1] === 2
+      ) {
+        gameBoard[checkerRow + 1][checkerCell + 1] = 0;
+        player1Score = player1Score + 1;
+        document.getElementById("player-1-score").textContent = player1Score;
 
-  if(destRow === checkerRow + 2){
-    if((destCell === checkerCell - 2 )&& (gameBoard[checkerRow+1][checkerCell-1] === 2)){
-      gameBoard[checkerRow+1][checkerCell-1] = 0;
-      player1Score = player1Score + 1
-      document.getElementById('player-1-score').textContent = player1Score;
-      console.log(player1Score)
-      return true;
-      
-    }
-  }
-
-  }
-
-  if(currentPlayer === 2){
-    if(destRow === checkerRow - 2){
-      if((destCell === checkerCell + 2 )&& (gameBoard[checkerRow-1][checkerCell+1] === 1)){
-        gameBoard[checkerRow-1][checkerCell+1] = 0;
-        player2Score = player2Score+1
-        document.getElementById('player-2-score').textContent = player2Score;
-        console.log(player2Score)
         return true;
       }
     }
-  
-    if(destRow === checkerRow - 2){
-      console.log('hi')
-      if((destCell === checkerCell - 2) && (gameBoard[checkerRow-1][checkerCell-1] === 1)){
-        gameBoard[checkerRow-1][checkerCell-1] = 0;
-        player2Score = player2Score+1
-        document.getElementById('player-2-score').textContent = player2Score;
-        console.log(player2Score)
+
+    if (destRow === checkerRow + 2) {
+      if (
+        destCell === checkerCell - 2 &&
+        gameBoard[checkerRow + 1][checkerCell - 1] === 2
+      ) {
+        gameBoard[checkerRow + 1][checkerCell - 1] = 0;
+        player1Score = player1Score + 1;
+        document.getElementById("player-1-score").textContent = player1Score;
         return true;
       }
     }
-  
+  }
+
+  if (currentPlayer === 2) {
+    if (destRow === checkerRow - 2) {
+      if (
+        destCell === checkerCell + 2 &&
+        gameBoard[checkerRow - 1][checkerCell + 1] === 1
+      ) {
+        gameBoard[checkerRow - 1][checkerCell + 1] = 0;
+        player2Score = player2Score + 1;
+        document.getElementById("player-2-score").textContent = player2Score;
+        console.log(player2Score);
+        return true;
+      }
     }
-  
+
+    if (destRow === checkerRow - 2) {
+      console.log("hi");
+      if (
+        destCell === checkerCell - 2 &&
+        gameBoard[checkerRow - 1][checkerCell - 1] === 1
+      ) {
+        gameBoard[checkerRow - 1][checkerCell - 1] = 0;
+        player2Score = player2Score + 1;
+        document.getElementById("player-2-score").textContent = player2Score;
+        console.log(player2Score);
+        return true;
+      }
+    }
+  }
 }
 
+function restartGame() {
+  window.location.reload();
+}
 
+document.getElementById("reset").addEventListener("click", restartGame);
