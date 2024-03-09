@@ -217,6 +217,7 @@ function canCheckerMove(checkPos, destCellPos) {
 
 function isPlayerTurnAllowed(checkerRow, checkerCell, destRow, destCell) {
   let canMove = false;
+  //add king functionality
   if (currentPlayer === 1) {
     if (
       destRow === checkerRow + 1 &&
