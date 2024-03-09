@@ -40,11 +40,11 @@ There are three views of this game:
 
 How I created my Checkers Board?
 
-I have used a matrix i.e Array or arrays with 0, 1 and 2 values, each denoting a placeholder for a checker.
+I have used a matrix i.e Array or arrays with 0, 1 and 2 values, each denoting a placeholder for a checker. This helped in creating a table in HTML using a nested for-loop and led a much simpler way for styling and updating with every move. Something interesting, I figured while making this that instead of making a lot of changes in styling and DOM every time a checker moves, I just updated the matrix with updated values based on the checker movement and re-created the table.
 
-1 - For Player-1; ---
-2 - For Player-2; ---
-0 - Empty Cells; ---
+- For Player-1: 1
+- For Player-2: 2
+- Empty Cells: 0
 
 let gameBoard = [
   [0, 1, 0, 1, 0, 1, 0, 1],
