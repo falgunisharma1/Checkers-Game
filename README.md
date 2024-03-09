@@ -1,8 +1,6 @@
 <h1>Project-1: Checkers Mania </h1>
 
-Game logic:
-
-There are three important checker move rules:
+Game Rules:
 
 1. Checkers can only move diagonally on dark squares.
 2. At the start of the game, checkers can only move forward, meaning toward the opposite player’s side.
@@ -15,12 +13,12 @@ There are three important checker move rules:
 
 <h2>Player Info:</h2>
 
-Red: Player-1
-Black: Player-2
-Restart Button: To restrat the game
-Current Player: To keep track of who's turn it is
-Scores: Listed for each player
-Checker Board: 8\*8 checker board with 24 checkers/pieces
+- Red 🔴: Player-1
+- Black ⚫ : Player-2
+- Restart Button: To restrat the game
+- Current Player: To keep track of who's turn it is
+- Scores: Listed for each player
+- Checker Board: 8\*8 checker board with 24 checkers/pieces
 
 <h2>Wireframe:</h2>
 
@@ -43,16 +41,7 @@ I have used a matrix i.e Array or arrays with 0, 1 and 2 values, each denoting a
 - For Player-2: 2
 - Empty Cells: 0
 
-let gameBoard = [
-[0, 1, 0, 1, 0, 1, 0, 1],
-[1, 0, 1, 0, 1, 0, 1, 0],
-[0, 1, 0, 1, 0, 1, 0, 1],
-[0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0],
-[2, 0, 2, 0, 2, 0, 2, 0],
-[0, 2, 0, 2, 0, 2, 0, 2],
-[2, 0, 2, 0, 2, 0, 2, 0],
-];
+![img](/Matrix.png)
 
 - The turns are tracked by a variable which is updated after every move. This would restrict the movement of the other player's checkers.
 - Every time an opponent checker is captured, it would add it to the player' score count who captured.
@@ -67,7 +56,7 @@ let gameBoard = [
 
 1. How to design the checkerboard was a major trouble because I didn't want to write 64 items or divs.
 
-- For first I decided to have the odd and even way but it involved a lot of manual work which I wanted to avoid.
+- First I decided to have the odd and even way, but it involved a lot of manual work which I wanted to avoid.
 
 - Rendering checkers too was a seperate task with this appraoch.
 
@@ -82,7 +71,7 @@ let gameBoard = [
 
 This took me a long time to figure out but it helped me cutting down a lot of work in DOM manipulation.
 
-2. Second was King Logic as it included a lot of ugly if and else statements :)
+2. Second was King Logic as it included a lot of ugly if and else statements and I would like to remove those with already exisiting logics within the functions.
 
 <h2>Future Features:</h2>
 

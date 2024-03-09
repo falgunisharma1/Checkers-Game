@@ -47,11 +47,11 @@ body {
 #next {
   display: flex;
   justify-content: center;
-  width: 30%; /* Set width to auto to fit the content */
-  padding: 10px 20px; /* Adjust padding to increase the size */
-  font-size: 22px; /* Increase font size */
-  background-color: rgb(118, 29, 29); /* Change to the desired color */
-  color: white; /* Set text color to contrast with the background */
+  width: 30%;
+  padding: 10px 20px;
+  font-size: 22px;
+  background-color: rgb(118, 29, 29);
+  color: white;
 }
 
 #next:hover {
@@ -60,49 +60,32 @@ body {
 }
 
 .light {
-  width: 80px; /* Adjust this value to change the width of the square */
-  height: 80px; /* Adjust this value to change the height of the square */
-  background-color: rgb(
-    239,
-    208,
-    192
-  ); /* Just for demonstration, you can change the color */
-  border: 1px solid black; /* Border properties: thickness style color */
+  width: 80px;
+  height: 80px;
+  background-color: rgb(239, 208, 192);
+  border: 1px solid black;
 }
 
 .dark {
-  width: 80px; /* Adjust this value to change the width of the square */
-  height: 80px; /* Adjust this value to change the height of the square */
-  background-color: rgb(
-    57,
-    23,
-    23
-  ); /* Just for demonstration, you can change the color */
-  border: 1px solid black; /* Border properties: thickness style color */
+  width: 80px;
+  height: 80px;
+  background-color: rgb(57, 23, 23);
+  border: 1px solid black;
 }
 
 .space-behind-checkers {
-  width: 100px; /* Adjust the size of the square */
-  height: 100px; /* Adjust the size of the square */
-  background-color: rgba(
-    245,
-    212,
-    174,
-    0.764
-  ); /* Just for demonstration, you can change the color */
+  width: 100px;
+  height: 100px;
+  background-color: rgba(245, 212, 174, 0.764);
   position: relative;
   border: 1px;
 }
 
 .player-1 {
-  width: 80%; /* Adjust the size of the circle relative to the square */
-  height: 80%; /* Adjust the size of the circle relative to the square */
-  background-color: rgb(
-    162,
-    37,
-    37
-  ); /* Just for demonstration, you can change the color */
-  border-radius: 50%; /* Make it a circle */
+  width: 80%;
+  height: 80%;
+  background-color: rgb(162, 37, 37);
+  border-radius: 50%;
   position: relative;
   top: 50%;
   left: 50%;
@@ -111,14 +94,10 @@ body {
 }
 
 .player-2 {
-  width: 80%; /* Adjust the size of the circle relative to the square */
-  height: 80%; /* Adjust the size of the circle relative to the square */
-  background-color: rgb(
-    8,
-    5,
-    5
-  ); /* Just for demonstration, you can change the color */
-  border-radius: 50%; /* Make it a circle */
+  width: 80%;
+  height: 80%;
+  background-color: rgb(8, 5, 5);
+  border-radius: 50%;
   position: relative;
   top: 50%;
   left: 50%;
@@ -141,17 +120,17 @@ body {
 }
 
 #Buttons-info button {
-  background-color: rgb(241, 192, 132); /* Button background color */
-  color: rgb(57, 23, 23); /* Button text color */
+  background-color: rgb(241, 192, 132);
+  color: rgb(57, 23, 23);
   border: none;
   padding: 10px 20px;
   font-size: 18px;
-  margin-top: 10px; /* Add some spacing between buttons */
+  margin-top: 10px;
   cursor: pointer;
 }
 
 #Buttons-info button:hover {
-  background-color: rgb(255, 204, 153); /* Button background color on hover */
+  background-color: rgb(255, 204, 153);
 }
 
 #gameBoard {
@@ -166,12 +145,12 @@ body {
   display: flex;
   justify-content: center;
   align-self: center;
-  background-color: rgb(241, 192, 132); /* Button background color */
-  color: rgb(57, 23, 23); /* Button text color */
+  background-color: rgb(241, 192, 132);
+  color: rgb(57, 23, 23);
   border: none;
   padding: 10px 10px;
   font-size: 18px;
-  margin: 40px; /* Add some spacing between buttons */
+  margin: 40px;
   cursor: pointer;
 }
 
@@ -223,14 +202,10 @@ table td {
 }
 
 .king-player-1 {
-  width: 80%; /* Adjust the size of the circle relative to the square */
-  height: 80%; /* Adjust the size of the circle relative to the square */
-  background-color: rgb(
-    162,
-    37,
-    37
-  ); /* Just for demonstration, you can change the color */
-  border-radius: 50%; /* Make it a circle */
+  width: 80%;
+  height: 80%;
+  background-color: rgb(162, 37, 37);
+  border-radius: 50%;
   position: relative;
   top: 50%;
   left: 50%;
@@ -239,14 +214,10 @@ table td {
 }
 
 .king-player-2 {
-  width: 80%; /* Adjust the size of the circle relative to the square */
-  height: 80%; /* Adjust the size of the circle relative to the square */
-  background-color: rgb(
-    8,
-    5,
-    5
-  ); /* Just for demonstration, you can change the color */
-  border-radius: 50%; /* Make it a circle */
+  width: 80%;
+  height: 80%;
+  background-color: rgb(8, 5, 5);
+  border-radius: 50%;
   position: relative;
   top: 50%;
   left: 50%;
