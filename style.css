@@ -2,7 +2,8 @@
   font-family: "Work Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  background-color: green;
+  background-color: rgb(4, 68, 4);
+  margin: 100%;
 }
 
 #intro {
@@ -71,12 +72,29 @@
   padding: 10px;
 }
 
+
+.gameBoard {
+  display: flex;
+  justify-content: center;
+  
+}
+
 #container {
   border: solid black;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.side-section {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+  flex-direction: column;
+
+}
+
+
 
 table {
   border-collapse: collapse;
@@ -85,8 +103,8 @@ table {
 
 
 table td {
-  width: 50px; /* Adjust the width of the cells */
-  height: 50px; /* Adjust the height of the cells */
-  border: 1px solid black; /* Add border for styling */
-  padding: 0; /* Remove padding */
-}
+  width: 50px; 
+  height: 50px; 
+  border: 1px solid black; 
+  padding: 0; 
+} 

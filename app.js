@@ -10,57 +10,45 @@ let gameBoard = [
 ];
 
 let currentPlayer = 1;
-var table = document.createElement("table");
 let player2CheckerCount = 1;
 let player1CheckerCount = 1;
-let test = true;
-let turn = true;
 let selectedChecker;
 let selectedCell;
-
 let selectedCheckerPosition;
 let selectedCellPosition;
 
+function deleteGame() {
+  let table = document.getElementById("table");
+  table.remove();
+}
+
+function resetGame() {
+  deleteGame();
+  createGame();
+}
+
 function createGame() {
+  let test = true;
+  let table = document.createElement("table");
+  table.id = "table";
   for (let row = 0; row < gameBoard.length; row++) {
     let tr = document.createElement("tr");
     for (let cell = 0; cell < gameBoard[row].length; cell++) {
       let td = document.createElement("td");
       tr.appendChild(td);
       td.id = `[${row}, ${cell}]`;
-      let currCellAddress = [row, cell];
-      td.onclick = (event) => {
-        if (selectedCell) {
-          if (document.getElementById(selectedCell.id).className === "dark") {
-            document.getElementById(selectedCell.id).style.background =
-              "rgb(57, 23, 23)";
-          } else {
-            document.getElementById(selectedCell.id).style.background =
-              "rgb(239, 208, 192)";
-          }
-        }
-        event.target.style.background = "#6b1717b6";
-        selectedCell = event.target;
-      };
-
-      if (gameBoard[row][cell] === 0) {
+      td.onclick = (event) => handleCellClick(event, row, cell);
+      if (row !== 0 && cell === 0) {
+        test = !test;
+      }
+      if (test) {
         td.className = "light";
+        test = false;
       } else {
         td.className = "dark";
+        test = true;
       }
 
-      if (row === 3 || row === 4) {
-        if (cell === 0) {
-          test = !test;
-        }
-        if (test) {
-          td.className = "light";
-          test = false;
-        } else {
-          td.className = "dark";
-          test = true;
-        }
-      }
       createChecker(row, cell, td);
     }
 
@@ -68,13 +56,50 @@ function createGame() {
   }
   document.getElementById("container").appendChild(table);
 }
+
 createGame();
+
+function handleCellClick(event, destRow, destCell) {
+  // if (event.target.style.background == "rgb(239, 208, 192)") {
+  //   console.log(event.target.style.background);
+  // } else {
+  if (selectedCell) {
+    if (document.getElementById(selectedCell.id).className === "dark") {
+      document.getElementById(selectedCell.id).style.background =
+        "rgb(57, 23, 23)";
+    } else {
+      document.getElementById(selectedCell.id).style.background =
+        "rgb(239, 208, 192)";
+    }
+  }
+
+  event.target.style.background = "#6b1717b6";
+  selectedCell = event.target;
+  selectedCellPosition = [destRow, destCell];
+  let checkerRow = selectedCheckerPosition[0];
+  let checkerCell = selectedCheckerPosition[1];
+  if (!selectedCheckerPosition) {
+    return;
+  }
+  if (canCheckerMove(selectedCheckerPosition, selectedCellPosition)) {
+    if (currentPlayer === 1) {
+      gameBoard[destRow][destCell] = 1;
+      gameBoard[checkerRow][checkerCell] = 0;
+      currentPlayer = 2;
+    } else {
+      gameBoard[destRow][destCell] = 2;
+      gameBoard[checkerRow][checkerCell] = 0;
+      currentPlayer = 1;
+    }
+    resetGame();
+  }
+}
 
 function handleCheckerClick(event, row, cell) {
   if (selectedChecker) {
     updatePrevSelectedCheckerBg(selectedChecker);
   }
-  let parent  = event.target.parentElement;
+  let parent = event.target.parentElement;
   parent.style.background = "#6b1717b5";
   selectedChecker = event.target;
   selectedCheckerPosition = [row, cell];
@@ -89,7 +114,9 @@ function createChecker(row, cell, td) {
     checker.className = "player-1";
     checker.id = "player1 " + player1CheckerCount;
     player1CheckerCount++;
-    checker.onclick = (event) => handleCheckerClick(event, row, cell);
+    checker.onclick = (event) => {
+      handleCheckerClick(event, row, cell);
+    };
   } else if (gameBoard[row][cell] === 2) {
     let checker = document.createElement("div");
     td.appendChild(checker);
@@ -97,27 +124,108 @@ function createChecker(row, cell, td) {
     checker.className = "player-2";
     checker.id = "player2 " + player2CheckerCount;
     player2CheckerCount++;
-    checker.onclick = handleCheckerClick;
+    checker.onclick = (event) => handleCheckerClick(event, row, cell);
   }
 }
 
 function updatePrevSelectedCheckerBg(selectedChecker) {
-  let parent = selectedChecker.parentElement;
-  parent.style.background = "rgb(57, 23, 23)";
+  // let parent = selectedChecker.parentElement;
+  // parent.style.background = "rgb(57, 23, 23)";
 }
 
-function moveChecker() {  
+function moveChecker(row, cell) {
   if (selectedCell && selectedChecker) {
     if (selectedCell.childNodes.length === 0) {
       let parent = selectedChecker.parentElement;
       parent.style.background = "rgb(57, 23, 23)";
 
       let targetParent = selectedCell;
+      console.log(targetParent, selectedChecker);
       if (targetParent.className === "dark") {
         targetParent.appendChild(selectedChecker);
-        parent.removeChild(selectedChecker);
       }
     }
   }
 }
-document.getElementById("okok").addEventListener("click", moveChecker);
+
+function canCheckerMove(checkPos, destCellPos) {
+  let canMove = false;
+  let checkerRow = checkPos[0];
+  let checkerCell = checkPos[1];
+  let destRow = destCellPos[0];
+  let destCell = destCellPos[1];
+
+  if (gameBoard[destRow][destCell] === 0) {
+    if (gameBoard[checkerRow][checkerCell] === currentPlayer) {
+      canMove = isPlayerTurnAllowed(checkerRow, checkerCell, destRow, destCell);
+      if(!canMove){
+        canMove = checkOpponent(destRow, destCell,checkerRow, checkerCell)
+      }
+    }
+  }
+
+  return canMove;
+}
+
+function isPlayerTurnAllowed(checkerRow, checkerCell, destRow, destCell) {
+  let canMove = false;
+  if (currentPlayer === 1) {
+    console.log([checkerRow, checkerCell], [destRow, destCell]);
+    if (
+      destRow === checkerRow + 1 &&
+      (destCell === checkerCell + 1 || destCell === checkerCell - 1)
+    ) {
+      canMove = true;
+    } 
+  } else if (currentPlayer === 2) {
+    if (
+      destRow === checkerRow - 1 &&
+      (destCell === checkerCell + 1 || destCell === checkerCell - 1)
+    ) {
+      canMove = true;
+    }
+  }
+
+  return canMove;
+}
+
+function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
+  console.log(destRow, destCell, checkerRow, checkerCell)
+  if(currentPlayer === 1){
+  if(destRow === checkerRow + 2){
+    if((destCell === checkerCell + 2) && (gameBoard[checkerRow+1][checkerCell+1] === 2)){
+      gameBoard[checkerRow+1][checkerCell+1] = 0;
+      return true;
+    }
+  }
+
+  if(destRow === checkerRow + 2){
+    if((destCell === checkerCell - 2 )&& (gameBoard[checkerRow+1][checkerCell-1] === 2)){
+      gameBoard[checkerRow+1][checkerCell-1] = 0;
+      return true;
+    }
+  }
+
+  }
+
+  if(currentPlayer === 2){
+    if(destRow === checkerRow - 2){
+      if((destCell === checkerCell + 2 )&& (gameBoard[checkerRow-1][checkerCell+1] === 1)){
+        gameBoard[checkerRow-1][checkerCell+1] = 0;
+        
+        return true;
+      }
+    }
+  
+    if(destRow === checkerRow - 2){
+      console.log('hi')
+      if((destCell === checkerCell - 2) && (gameBoard[checkerRow-1][checkerCell-1] === 1)){
+        
+        gameBoard[checkerRow-1][checkerCell-1] = 0;
+        return true;
+      }
+    }
+  
+    }
+  
+}
