@@ -42,9 +42,9 @@ How I created my Checkers Board?
 
 I have used a matrix i.e Array or arrays with 0, 1 and 2 values, each denoting a placeholder for a checker.
 
-1: For Player-1
-2: For Player-2
-0: Empty Cells
+1: For Player-1;
+2: For Player-2;
+0: Empty Cells;
 
 let gameBoard = [
   [0, 1, 0, 1, 0, 1, 0, 1],
