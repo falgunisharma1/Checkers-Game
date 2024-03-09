@@ -105,20 +105,32 @@ function handleCellClick(event, destRow, destCell) {
   }
   if (canCheckerMove(selectedCheckerPosition, selectedCellPosition)) {
     if (currentPlayer === 1) {
-      gameBoard[destRow][destCell] = 1;
-      gameBoard[checkerRow][checkerCell] = 0;
+      if (gameBoard[checkerRow][checkerCell] === 10) {
+        gameBoard[destRow][destCell] = 10;
+        gameBoard[checkerRow][checkerCell] = 0;
+      } else {
+        gameBoard[destRow][destCell] = 1;
+        gameBoard[checkerRow][checkerCell] = 0;
+      }
       currentPlayer = 2;
       document.getElementById(
         "currentPlayer"
       ).textContent = `Current Player: ${currentPlayer}`;
     } else {
-      gameBoard[destRow][destCell] = 2;
-      gameBoard[checkerRow][checkerCell] = 0;
+      if (gameBoard[checkerRow][checkerCell] === 20) {
+        gameBoard[destRow][destCell] = 20;
+        gameBoard[checkerRow][checkerCell] = 0;
+      }
+      {
+        gameBoard[destRow][destCell] = 2;
+        gameBoard[checkerRow][checkerCell] = 0;
+      }
       currentPlayer = 1;
       document.getElementById(
         "currentPlayer"
       ).textContent = `Current Player: ${currentPlayer}`;
     }
+
     if (destRow === 0) {
       gameBoard[destRow][destCell] = 20;
     } else if (destRow === 7) {
@@ -220,15 +232,21 @@ function isPlayerTurnAllowed(checkerRow, checkerCell, destRow, destCell) {
   //add king functionality
   if (currentPlayer === 1) {
     if (
-      destRow === checkerRow + 1 &&
-      (destCell === checkerCell + 1 || destCell === checkerCell - 1)
+      (destRow === checkerRow + 1 &&
+        (destCell === checkerCell + 1 || destCell === checkerCell - 1)) ||
+      (gameBoard[checkerRow][checkerCell] === 10 &&
+        destRow === checkerRow - 1 &&
+        (destCell === checkerCell + 1 || destCell === checkerCell - 1))
     ) {
       canMove = true;
     }
   } else if (currentPlayer === 2) {
     if (
-      destRow === checkerRow - 1 &&
-      (destCell === checkerCell + 1 || destCell === checkerCell - 1)
+      (destRow === checkerRow - 1 &&
+        (destCell === checkerCell + 1 || destCell === checkerCell - 1)) ||
+      (gameBoard[checkerRow][checkerCell] === 20 &&
+        destRow === checkerRow + 1 &&
+        (destCell === checkerCell + 1 || destCell === checkerCell - 1))
     ) {
       canMove = true;
     }
@@ -239,7 +257,8 @@ function isPlayerTurnAllowed(checkerRow, checkerCell, destRow, destCell) {
 
 function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
   console.log(destRow, destCell, checkerRow, checkerCell);
-  if (currentPlayer === 1) {
+  //if player -1 but not a king checker
+  if (currentPlayer === 1 && gameBoard[checkerRow][checkerCell] !== 10) {
     if (destRow === checkerRow + 2) {
       if (
         destCell === checkerCell + 2 &&
@@ -266,7 +285,8 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
     }
   }
 
-  if (currentPlayer === 2) {
+  //if player - 2 but not a king checker
+  if (currentPlayer === 2 && gameBoard[checkerRow][checkerCell] !== 20) {
     if (destRow === checkerRow - 2) {
       if (
         destCell === checkerCell + 2 &&
@@ -294,6 +314,113 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
       }
     }
   }
+
+  //if player - 1 but a king checker
+  if (currentPlayer === 1 && gameBoard[checkerRow][checkerCell] === 10) {
+    if (destRow === checkerRow + 2) {
+      if (
+        destCell === checkerCell + 2 &&
+        gameBoard[checkerRow + 1][checkerCell + 1] === 2
+      ) {
+        gameBoard[checkerRow + 1][checkerCell + 1] = 0;
+        player1Score = player1Score + 1;
+        document.getElementById("player-1-score").textContent = player1Score;
+
+        return true;
+      }
+    }
+
+    if (destRow === checkerRow + 2) {
+      if (
+        destCell === checkerCell - 2 &&
+        gameBoard[checkerRow + 1][checkerCell - 1] === 2
+      ) {
+        gameBoard[checkerRow + 1][checkerCell - 1] = 0;
+        player1Score = player1Score + 1;
+        document.getElementById("player-1-score").textContent = player1Score;
+        return true;
+      }
+    }
+
+    if (destRow === checkerRow - 2) {
+      if (
+        destCell === checkerCell + 2 &&
+        gameBoard[checkerRow - 1][checkerCell + 1] === 2
+      ) {
+        gameBoard[checkerRow - 1][checkerCell + 1] = 0;
+        player1Score = player1Score + 1;
+        document.getElementById("player-1-score").textContent = player1Score;
+        return true;
+      }
+    }
+
+    if (destRow === checkerRow - 2) {
+      if (
+        destCell === checkerCell - 2 &&
+        gameBoard[checkerRow - 1][checkerCell - 1] === 2
+      ) {
+        gameBoard[checkerRow - 1][checkerCell - 1] = 0;
+        player1Score = player1Score + 1;
+        document.getElementById("player-1-score").textContent = player1Score;
+        return true;
+      }
+    }
+  }
+
+  //if player - 2 but a king checker
+  if (currentPlayer === 2 && gameBoard[checkerRow][checkerCell] === 20) {
+    if (destRow === checkerRow - 2) {
+      if (
+        destCell === checkerCell + 2 &&
+        gameBoard[checkerRow - 1][checkerCell + 1] === 1
+      ) {
+        gameBoard[checkerRow - 1][checkerCell + 1] = 0;
+        player2Score = player2Score + 1;
+        document.getElementById("player-2-score").textContent = player2Score;
+        console.log(player2Score);
+        return true;
+      }
+    }
+
+    if (destRow === checkerRow - 2) {
+      console.log("hi");
+      if (
+        destCell === checkerCell - 2 &&
+        gameBoard[checkerRow - 1][checkerCell - 1] === 1
+      ) {
+        gameBoard[checkerRow - 1][checkerCell - 1] = 0;
+        player2Score = player2Score + 1;
+        document.getElementById("player-2-score").textContent = player2Score;
+        console.log(player2Score);
+        return true;
+      }
+    }
+
+    if (destRow === checkerRow + 2) {
+      if (
+        destCell === checkerCell + 2 &&
+        gameBoard[checkerRow + 1][checkerCell + 1] === 1
+      ) {
+        gameBoard[checkerRow + 1][checkerCell + 1] = 0;
+        player2Score = player2Score + 1;
+        document.getElementById("player-2-score").textContent = player2Score;
+
+        return true;
+      }
+    }
+
+    if (destRow === checkerRow + 2) {
+      if (
+        destCell === checkerCell - 2 &&
+        gameBoard[checkerRow + 1][checkerCell - 1] === 1
+      ) {
+        gameBoard[checkerRow + 1][checkerCell - 1] = 0;
+        player2Score = player2Score + 1;
+        document.getElementById("player-2-score").textContent = player2Score;
+        return true;
+      }
+    }
+  }
 }
 
 function restartGame() {
@@ -315,3 +442,4 @@ function checkCurrentPlayer(checkerRow, checkerCell, element) {
     }
   }
 }
+
