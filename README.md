@@ -27,3 +27,11 @@ Checker Board: 8*8 checker board with 24 checkers/pieces
 
 Wireframe:
 
+
+![Screen Shot 2024-03-08 at 11 47 37 PM](https://github.com/falgunisharma1/Checkers-Game/assets/155585711/d27652cc-a206-4a2c-9983-bc9f12a28bbd)
+
+![Screen Shot 2024-03-08 at 11 47 37 PM](https://github.com/falgunisharma1/Checkers-Game/assets/155585711/a79ed83e-24a6-4e34-b877-649058dc23af)
+
+![Screen Shot 2024-03-08 at 11 47 56 PM](https://github.com/falgunisharma1/Checkers-Game/assets/155585711/ab1ef8b7-b8bc-4f66-952e-5cc8042fc293)
+
+
