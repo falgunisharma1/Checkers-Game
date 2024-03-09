@@ -281,3 +281,8 @@ function restartGame() {
 }
 
 document.getElementById("reset").addEventListener("click", restartGame);
+
+
+function checkWinner (){
+  
+}
