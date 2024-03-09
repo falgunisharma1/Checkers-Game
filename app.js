@@ -19,36 +19,34 @@ let selectedCellPosition;
 let player1Score = 0;
 let player2Score = 0;
 
-document.getElementById(
-  "currentPlayer"
-).textContent = `Current Player: ${currentPlayer}`;
 
+//Next button on second view
 function buttonClickNext() {
   document.getElementById("info").style.display = "none";
   document.getElementById("Buttons-info").style.display = "flex";
 }
 
+//Start button on first view
 function clickStartButton() {
   document.getElementById("gameBoard").style.visibility = "visible";
   document.getElementById("Buttons-info").style.display = "none";
 }
 
-document.getElementById("next").addEventListener("click", buttonClickNext);
-
-document
-  .getElementById("start-game")
-  .addEventListener("click", clickStartButton);
-
+//Creating table with the updated values in gameBoard array
 function deleteGame() {
   let table = document.getElementById("table");
   table.remove();
 }
 
+
+//Resetting the board with every move
 function resetGame() {
   deleteGame();
   createGame();
 }
 
+
+//Creating the table
 function createGame() {
   let test = true;
   let table = document.createElement("table");
@@ -81,10 +79,9 @@ function createGame() {
 
 createGame();
 
+//handle cell click
 function handleCellClick(event, destRow, destCell) {
-  // if (event.target.style.background == "rgb(239, 208, 192)") {
-  //   console.log(event.target.style.background);
-  // } else {
+  
   if (selectedCell) {
     if (document.getElementById(selectedCell.id).className === "dark") {
       document.getElementById(selectedCell.id).style.background =
@@ -143,6 +140,8 @@ function handleCellClick(event, destRow, destCell) {
   }
 }
 
+
+//When a checker is selected
 function handleCheckerClick(event, row, cell) {
   let parent = event.target.parentElement;
   parent.style.background = "#6b1717b5";
@@ -151,6 +150,8 @@ function handleCheckerClick(event, row, cell) {
   event.stopPropagation();
 }
 
+
+//To create the checker - called back in createTable()
 function createChecker(row, cell, td) {
   if (gameBoard[row][cell] === 1) {
     let checker = document.createElement("div");
@@ -195,6 +196,7 @@ function createChecker(row, cell, td) {
   }
 }
 
+// To move checkers
 function moveChecker(row, cell) {
   if (selectedCell && selectedChecker) {
     if (selectedCell.childNodes.length === 0) {
@@ -210,6 +212,7 @@ function moveChecker(row, cell) {
   }
 }
 
+//To check if a player can move their checker or not
 function canCheckerMove(checkPos, destCellPos) {
   let canMove = false;
   let checkerRow = checkPos[0];
@@ -229,6 +232,8 @@ function canCheckerMove(checkPos, destCellPos) {
   return canMove;
 }
 
+
+//Which player can move based on matrix values and current player value variable
 function isPlayerTurnAllowed(checkerRow, checkerCell, destRow, destCell) {
   let canMove = false;
   //add king functionality
@@ -257,6 +262,8 @@ function isPlayerTurnAllowed(checkerRow, checkerCell, destRow, destCell) {
   return canMove;
 }
 
+
+//To check if there is an opponent to capture 
 function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
   console.log(destRow, destCell, checkerRow, checkerCell);
   //if player -1 but not a king checker
@@ -449,12 +456,13 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
   }
 }
 
+//To restart the game - loads the window
 function restartGame() {
   window.location.reload();
 }
 
-document.getElementById("reset").addEventListener("click", restartGame);
 
+//Checking turns handeling Kings checkers as well
 function checkCurrentPlayer(checkerRow, checkerCell, element) {
   if (element === 10 || element === 1) {
     element = 1;
@@ -468,3 +476,15 @@ function checkCurrentPlayer(checkerRow, checkerCell, element) {
     }
   }
 }
+
+document.getElementById(
+  "currentPlayer"
+).textContent = `Current Player: ${currentPlayer}`;
+
+document.getElementById("next").addEventListener("click", buttonClickNext);
+
+document
+  .getElementById("start-game")
+  .addEventListener("click", clickStartButton);
+
+  document.getElementById("reset").addEventListener("click", restartGame);

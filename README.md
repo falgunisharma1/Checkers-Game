@@ -1,5 +1,9 @@
 <h1>Project-1: Checkers Mania </h1>
 
+
+[Game Link 🔗](https://checkers-mania.netlify.app/)
+
+
 Game Rules:
 
 1. Checkers can only move diagonally on dark squares.
