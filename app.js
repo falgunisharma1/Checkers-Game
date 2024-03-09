@@ -119,14 +119,17 @@ function handleCellClick(event, destRow, destCell) {
         "currentPlayer"
       ).textContent = `Current Player: ${currentPlayer}`;
     }
+    if (destRow === 0) {
+      gameBoard[destRow][destCell] = 20;
+    } else if (destRow === 7) {
+      gameBoard[destRow][destCell] = 10;
+    }
+
     resetGame();
   }
 }
 
 function handleCheckerClick(event, row, cell) {
-  if (selectedChecker) {
-    updatePrevSelectedCheckerBg(selectedChecker);
-  }
   let parent = event.target.parentElement;
   parent.style.background = "#6b1717b5";
   selectedChecker = event.target;
@@ -153,12 +156,29 @@ function createChecker(row, cell, td) {
     checker.id = "player2 " + player2CheckerCount;
     player2CheckerCount++;
     checker.onclick = (event) => handleCheckerClick(event, row, cell);
+  } else if (gameBoard[row][cell] === 10) {
+    let checker = document.createElement("div");
+    let kingEmoji = document.createElement("p");
+    kingEmoji.id = "kingEmoji";
+    kingEmoji.textContent = "👑";
+    checker.appendChild(kingEmoji);
+    td.appendChild(checker);
+    checker.className = "king-player-1";
+    checker.onclick = (event) => {
+      handleCheckerClick(event, row, cell);
+    };
+  } else if (gameBoard[row][cell] === 20) {
+    let checker = document.createElement("div");
+    let kingEmoji = document.createElement("p");
+    kingEmoji.id = "kingEmoji";
+    kingEmoji.textContent = "👑";
+    checker.appendChild(kingEmoji);
+    td.appendChild(checker);
+    checker.className = "king-player-2";
+    checker.onclick = (event) => {
+      handleCheckerClick(event, row, cell);
+    };
   }
-}
-
-function updatePrevSelectedCheckerBg(selectedChecker) {
-  // let parent = selectedChecker.parentElement;
-  // parent.style.background = "rgb(57, 23, 23)";
 }
 
 function moveChecker(row, cell) {
@@ -182,9 +202,9 @@ function canCheckerMove(checkPos, destCellPos) {
   let checkerCell = checkPos[1];
   let destRow = destCellPos[0];
   let destCell = destCellPos[1];
-
+  let element = gameBoard[checkerRow][checkerCell];
   if (gameBoard[destRow][destCell] === 0) {
-    if (gameBoard[checkerRow][checkerCell] === currentPlayer) {
+    if (checkCurrentPlayer(checkerRow, checkerCell, element)) {
       canMove = isPlayerTurnAllowed(checkerRow, checkerCell, destRow, destCell);
       if (!canMove) {
         canMove = checkOpponent(destRow, destCell, checkerRow, checkerCell);
@@ -198,7 +218,6 @@ function canCheckerMove(checkPos, destCellPos) {
 function isPlayerTurnAllowed(checkerRow, checkerCell, destRow, destCell) {
   let canMove = false;
   if (currentPlayer === 1) {
-    console.log([checkerRow, checkerCell], [destRow, destCell]);
     if (
       destRow === checkerRow + 1 &&
       (destCell === checkerCell + 1 || destCell === checkerCell - 1)
@@ -282,7 +301,16 @@ function restartGame() {
 
 document.getElementById("reset").addEventListener("click", restartGame);
 
-
-function checkWinner (){
-  
+function checkCurrentPlayer(checkerRow, checkerCell, element) {
+  if (element === 10 || element === 1) {
+    element = 1;
+    if (element === currentPlayer) {
+      return true;
+    }
+  } else if (element === 20 || element === 2) {
+    element = 2;
+    if (element === currentPlayer) {
+      return true;
+    }
+  }
 }

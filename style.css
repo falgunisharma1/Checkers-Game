@@ -15,7 +15,6 @@ body {
   align-items: center;
   flex-direction: column;
   color: white;
-  
 }
 
 #info {
@@ -25,24 +24,24 @@ body {
   flex-direction: column;
   padding: 50px;
   margin: 50px 100px 50px 100px;
-  background-color: rgba(133, 133, 133, 0.31); 
-  border-radius: 10px; 
+  background-color: rgba(133, 133, 133, 0.31);
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  color: whitesmoke; 
+  color: whitesmoke;
   font-size: large;
 }
 
-#h2Rules{
-font-size: larger;
+#h2Rules {
+  font-size: larger;
 }
 
 #info ul {
-  margin-top: 20px; 
-  margin-bottom: 20px; 
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #info li {
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
 #next {
@@ -53,42 +52,56 @@ font-size: larger;
   font-size: 22px; /* Increase font size */
   background-color: rgb(118, 29, 29); /* Change to the desired color */
   color: white; /* Set text color to contrast with the background */
-
 }
 
 #next:hover {
-  background-color: rgb(255, 204, 153); 
+  background-color: rgb(255, 204, 153);
   color: black;
 }
-
 
 .light {
   width: 80px; /* Adjust this value to change the width of the square */
   height: 80px; /* Adjust this value to change the height of the square */
-  background-color: rgb(239, 208, 192); /* Just for demonstration, you can change the color */
+  background-color: rgb(
+    239,
+    208,
+    192
+  ); /* Just for demonstration, you can change the color */
   border: 1px solid black; /* Border properties: thickness style color */
 }
 
 .dark {
   width: 80px; /* Adjust this value to change the width of the square */
   height: 80px; /* Adjust this value to change the height of the square */
-  background-color: rgb(57, 23, 23); /* Just for demonstration, you can change the color */
+  background-color: rgb(
+    57,
+    23,
+    23
+  ); /* Just for demonstration, you can change the color */
   border: 1px solid black; /* Border properties: thickness style color */
 }
 
 .space-behind-checkers {
   width: 100px; /* Adjust the size of the square */
   height: 100px; /* Adjust the size of the square */
-  background-color:  rgba(245, 212, 174, 0.764); /* Just for demonstration, you can change the color */
+  background-color: rgba(
+    245,
+    212,
+    174,
+    0.764
+  ); /* Just for demonstration, you can change the color */
   position: relative;
   border: 1px;
 }
 
-
 .player-1 {
   width: 80%; /* Adjust the size of the circle relative to the square */
   height: 80%; /* Adjust the size of the circle relative to the square */
-  background-color: rgb(162, 37, 37); /* Just for demonstration, you can change the color */
+  background-color: rgb(
+    162,
+    37,
+    37
+  ); /* Just for demonstration, you can change the color */
   border-radius: 50%; /* Make it a circle */
   position: relative;
   top: 50%;
@@ -96,12 +109,15 @@ font-size: larger;
   transform: translate(-50%, -50%);
   align-self: center;
 }
-
 
 .player-2 {
   width: 80%; /* Adjust the size of the circle relative to the square */
   height: 80%; /* Adjust the size of the circle relative to the square */
-  background-color: rgb(8, 5, 5); /* Just for demonstration, you can change the color */
+  background-color: rgb(
+    8,
+    5,
+    5
+  ); /* Just for demonstration, you can change the color */
   border-radius: 50%; /* Make it a circle */
   position: relative;
   top: 50%;
@@ -109,7 +125,6 @@ font-size: larger;
   transform: translate(-50%, -50%);
   align-self: center;
 }
-
 
 #Buttons-info {
   display: none;
@@ -118,11 +133,11 @@ font-size: larger;
   flex-direction: column;
   border: 1px;
   padding: 20px;
-  width: 30%; 
-  margin: 0 auto; 
-  background-color: rgba(167, 138, 138, 0.391); 
-  color: white; 
-  border-radius: 10px; 
+  width: 30%;
+  margin: 0 auto;
+  background-color: rgba(167, 138, 138, 0.391);
+  color: white;
+  border-radius: 10px;
 }
 
 #Buttons-info button {
@@ -140,13 +155,11 @@ font-size: larger;
 }
 
 #gameBoard {
-  visibility:hidden;
+  visibility: hidden;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 0px 0px 0px 40px;
-
-  
 }
 
 #reset {
@@ -174,9 +187,8 @@ font-size: larger;
   justify-content: space-around;
   padding: 20px;
   flex-direction: column;
-  color:aliceblue;
+  color: aliceblue;
   margin: 0px -100px 100px 0px;
-
 }
 
 .score {
@@ -185,9 +197,8 @@ font-size: larger;
   padding: 150px;
   flex-direction: column;
   text-decoration: solid;
-  color:aliceblue;
+  color: aliceblue;
   margin: 50px 0px 30px 0px;
-
 }
 
 #player-1-score {
@@ -200,17 +211,51 @@ font-size: larger;
   border-color: white;
 }
 
-
 table {
   border-collapse: collapse;
-  
 }
 
-
 table td {
-  width: 50px; 
-  height: 50px; 
-  border: 1px solid black; 
-  padding: 0; 
-} 
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  padding: 0;
+}
 
+.king-player-1 {
+  width: 80%; /* Adjust the size of the circle relative to the square */
+  height: 80%; /* Adjust the size of the circle relative to the square */
+  background-color: rgb(
+    162,
+    37,
+    37
+  ); /* Just for demonstration, you can change the color */
+  border-radius: 50%; /* Make it a circle */
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-self: center;
+}
+
+.king-player-2 {
+  width: 80%; /* Adjust the size of the circle relative to the square */
+  height: 80%; /* Adjust the size of the circle relative to the square */
+  background-color: rgb(
+    8,
+    5,
+    5
+  ); /* Just for demonstration, you can change the color */
+  border-radius: 50%; /* Make it a circle */
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-self: center;
+}
+
+#kingEmoji {
+  align-items: center;
+  font-size: x-large;
+  text-align: center;
+}
