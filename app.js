@@ -16,6 +16,24 @@ let selectedChecker;
 let selectedCell;
 let selectedCheckerPosition;
 let selectedCellPosition;
+let player1Score = 0;
+let player2Score = 0;
+
+function buttonClickNext (){
+  document.getElementById('info').style.display='none';
+  document.getElementById('Buttons-info').style.display='block';
+  
+}
+
+
+function clickStartButton (){
+  document.getElementById('gameBoard').style.visibility='visible';
+  document.getElementById('Buttons-info').style.display='none'
+}
+
+document.getElementById('next').addEventListener('click', buttonClickNext);
+
+document.getElementById('start-game').addEventListener('click', clickStartButton);
 
 function deleteGame() {
   let table = document.getElementById("table");
@@ -195,14 +213,22 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
   if(destRow === checkerRow + 2){
     if((destCell === checkerCell + 2) && (gameBoard[checkerRow+1][checkerCell+1] === 2)){
       gameBoard[checkerRow+1][checkerCell+1] = 0;
+      player1Score = player1Score + 1
+      document.getElementById('player-1-score').textContent = player1Score;
+      console.log(player1Score)
       return true;
+     
     }
   }
 
   if(destRow === checkerRow + 2){
     if((destCell === checkerCell - 2 )&& (gameBoard[checkerRow+1][checkerCell-1] === 2)){
       gameBoard[checkerRow+1][checkerCell-1] = 0;
+      player1Score = player1Score + 1
+      document.getElementById('player-1-score').textContent = player1Score;
+      console.log(player1Score)
       return true;
+      
     }
   }
 
@@ -212,7 +238,9 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
     if(destRow === checkerRow - 2){
       if((destCell === checkerCell + 2 )&& (gameBoard[checkerRow-1][checkerCell+1] === 1)){
         gameBoard[checkerRow-1][checkerCell+1] = 0;
-        
+        player2Score = player2Score+1
+        document.getElementById('player-2-score').textContent = player2Score;
+        console.log(player2Score)
         return true;
       }
     }
@@ -220,8 +248,10 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
     if(destRow === checkerRow - 2){
       console.log('hi')
       if((destCell === checkerCell - 2) && (gameBoard[checkerRow-1][checkerCell-1] === 1)){
-        
         gameBoard[checkerRow-1][checkerCell-1] = 0;
+        player2Score = player2Score+1
+        document.getElementById('player-2-score').textContent = player2Score;
+        console.log(player2Score)
         return true;
       }
     }
@@ -229,3 +259,5 @@ function checkOpponent(destRow, destCell, checkerRow, checkerCell) {
     }
   
 }
+
+

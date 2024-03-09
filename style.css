@@ -1,9 +1,12 @@
+body {
+  background-color: rgb(4, 68, 4);
+}
+
 .allItems {
   font-family: "Work Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  background-color: rgb(4, 68, 4);
-  margin: 100%;
+  padding: 30px;
 }
 
 #intro {
@@ -12,13 +15,52 @@
   align-items: center;
   flex-direction: column;
   color: white;
+  
 }
 
-#rows{
+#info {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  padding: 50px;
+  margin: 50px 100px 50px 100px;
+  background-color: rgba(133, 133, 133, 0.31); 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: whitesmoke; 
+  font-size: large;
 }
+
+#h2Rules{
+font-size: larger;
+}
+
+#info ul {
+  margin-top: 20px; 
+  margin-bottom: 20px; 
+}
+
+#info li {
+  margin-bottom: 10px; 
+}
+
+#next {
+  display: flex;
+  justify-content: center;
+  width: 30%; /* Set width to auto to fit the content */
+  padding: 10px 20px; /* Adjust padding to increase the size */
+  font-size: 22px; /* Increase font size */
+  background-color: rgb(118, 29, 29); /* Change to the desired color */
+  color: white; /* Set text color to contrast with the background */
+
+}
+
+#next:hover {
+  background-color: rgb(255, 204, 153); 
+  color: black;
+}
+
 
 .light {
   width: 80px; /* Adjust this value to change the width of the square */
@@ -37,15 +79,16 @@
 .space-behind-checkers {
   width: 100px; /* Adjust the size of the square */
   height: 100px; /* Adjust the size of the square */
-  background-color:  rgb(57, 23, 23); /* Just for demonstration, you can change the color */
+  background-color:  rgba(245, 212, 174, 0.764); /* Just for demonstration, you can change the color */
   position: relative;
-  border: 1px solid black;
+  border: 1px;
 }
+
 
 .player-1 {
   width: 80%; /* Adjust the size of the circle relative to the square */
   height: 80%; /* Adjust the size of the circle relative to the square */
-  background-color: rgb(241, 192, 132); /* Just for demonstration, you can change the color */
+  background-color: rgb(162, 37, 37); /* Just for demonstration, you can change the color */
   border-radius: 50%; /* Make it a circle */
   position: relative;
   top: 50%;
@@ -53,6 +96,7 @@
   transform: translate(-50%, -50%);
   align-self: center;
 }
+
 
 .player-2 {
   width: 80%; /* Adjust the size of the circle relative to the square */
@@ -67,16 +111,48 @@
 }
 
 
-#Buttons-info{
-  border: 1px solid black;
-  padding: 10px;
+#Buttons-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px;
+  padding: 20px;
+  width: 30%; 
+  margin: 0 auto; 
+  background-color: rgba(167, 138, 138, 0.391); 
+  color: white; 
+  border-radius: 10px; 
 }
 
+#Buttons-info button {
+  background-color: rgb(241, 192, 132); /* Button background color */
+  color: rgb(57, 23, 23); /* Button text color */
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-top: 10px; /* Add some spacing between buttons */
+  cursor: pointer;
+}
 
-.gameBoard {
+#Buttons-info button:hover {
+  background-color: rgb(255, 204, 153); /* Button background color on hover */
+}
+
+#gameBoard {
+  visibility:hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 0px 0px 100px;
+
+  
+}
+
+#reset {
   display: flex;
   justify-content: center;
-  
+  align-self: center;
 }
 
 #container {
@@ -91,9 +167,29 @@
   justify-content: space-evenly;
   padding: 20px;
   flex-direction: column;
+  color:aliceblue
 
 }
 
+.score {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 150px;
+  flex-direction: column;
+  text-decoration: solid;
+  color:aliceblue
+
+}
+
+#player-1-score {
+  border: 1px;
+  border-color: white;
+}
+
+#player-2-score {
+  border: 1px;
+  border-color: white;
+}
 
 
 table {
@@ -108,3 +204,4 @@ table td {
   border: 1px solid black; 
   padding: 0; 
 } 
+
